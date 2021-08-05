@@ -66,6 +66,7 @@ TEMPLATES = [
         'DIRS': [
             Path(BASE_DIR, 'my_core', 'templates'),
             Path(BASE_DIR, 'notepad', 'templates'),
+            Path(BASE_DIR, 'accounts', 'templates'),
             ],
         'APP_DIRS': True,
         'OPTIONS': {

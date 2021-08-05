@@ -1,0 +1,10 @@
+{% extends 'my_core/base.html' %}
+
+
+<!-- {% load static %} -->
+{% block content %}
+    <form action="" method="post">
+        {{ form.as_p }} {% csrf_token %}
+        <input type="submit" value="Login">
+    </form>
+{% endblock %}
