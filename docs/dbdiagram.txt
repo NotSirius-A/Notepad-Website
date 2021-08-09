@@ -1,0 +1,31 @@
+https://dbdiagram.io
+
+
+
+
+
+Table django_auth_User [note: "This is a builtin django model"] {
+  id pk
+}
+
+Table Profile {
+  id uuid
+  user int [ref: - django_auth_User.id]
+}
+
+Table Note {
+  id uuid
+  owner uuid [ref: > Profile.id]
+  body varchar
+  title varchar
+  date_created date
+  date_edited date
+  image image
+  }
+
+Table NoteShare {
+  id pk
+  note uuid [ref: > Note.id]
+  shared_to uuid [ref: > Profile.id]
+  date date
+}
