@@ -1,0 +1,16 @@
+{% extends 'notepad/notepad_base.html' %}
+
+{% block notepad_content %}
+
+<h1>{{ note.id }}</h1>
+
+<p>title: {{ note.title }}</p>
+
+<p>body: {{ note.body }}</p>
+
+<p>owner: {{ note.owner }}</p>
+
+<p>date_edited: {{ note.date_edited }}</p>
+
+
+{% endblock %}

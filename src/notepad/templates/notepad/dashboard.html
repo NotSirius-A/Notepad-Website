@@ -1,10 +1,16 @@
 {% extends 'notepad/notepad_base.html' %}
 
-{% block dashboard_content %}
+{% block notepad_content %}
 
 <h1>Dashboard</h1>
 
-<p>{{ user }}</p>
+<p>user: {{ user }}</p>
+
+<p>profile: {{ user_profile }}</p>
+
+{% for note in notes %}
+    <p style="background-color: lightgray;">{{ note }} ==> {{ note.body }}  ID: {{ note.id }}</p>
+{% endfor %}
 
 sdfsdfsdf
 {% endblock %}
