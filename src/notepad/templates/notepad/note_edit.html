@@ -1,0 +1,15 @@
+{% extends 'notepad/notepad_base.html' %}
+
+
+{% block notepad_content %}
+
+note edit form
+
+<form action="" method="post">
+    {{ form }}{% csrf_token %}
+    <input type="submit" value="edit">
+</form>
+
+{% endblock notepad_content %}
+
+

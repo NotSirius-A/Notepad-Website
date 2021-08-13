@@ -37,6 +37,9 @@ DEBUG = env('DEBUG')
 ALLOWED_HOSTS = ['*']
 
 
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -51,7 +54,6 @@ INSTALLED_APPS = [
     'accounts',
     'my_core',
     'notepad',
-    'api',
 ]
 
 MIDDLEWARE = [
@@ -124,7 +126,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Warsaw'
 
 USE_I18N = True
 

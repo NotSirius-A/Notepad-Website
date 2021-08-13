@@ -9,7 +9,8 @@
 <p>profile: {{ user_profile }}</p>
 
 {% for note in notes %}
-    <p style="background-color: lightgray;">{{ note }} ==> {{ note.body }}  ID: {{ note.id }}</p>
+    <p style="background-color: lightgray;">{{ note }} ==> {{ note.body }}<br>  ID: {{ note.id }}</p>
+    <a href="{% url 'note_entire' uuid=note.id %}">LINK</a>
 {% endfor %}
 
 sdfsdfsdf

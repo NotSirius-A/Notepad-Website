@@ -1,12 +1,17 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
+from django.http import Http404
 from django.contrib.auth.decorators import login_required
 
-from .models import Note, NoteShare, Profile, User
+from .models import Note, NoteShare, Profile
+
+from .forms import NoteEditForm
 
 @login_required(login_url='/login/')
 def dashboard_view(request, *args, **kwargs):
-
-    user_profile = Profile.objects.filter(user=request.user)[0]
+    try:
+        user_profile = Profile.objects.filter(user=request.user)[0]
+    except IndexError:
+        raise Exception("Profile must be created alongside django-user, django-user without a profile tried to log in")
 
     notes = Note.objects.filter(owner=user_profile)
 
@@ -23,10 +28,65 @@ def note_entire_view(request, *args, **kwargs):
     # uuid should be passed in the url like "..path/<uuid>/"
     UUID = kwargs['uuid']
 
-    note = Note.objects.filter(id=UUID)[0]
+    user_profile = get_object_or_404(Profile, user=request.user)
+
+    note = get_object_or_404(Note, id=UUID)
+ 
+    is_authorized = False
+    is_owner = False
+
+    if user_profile == note.owner:
+        is_authorized = True
+        is_owner = True
+    else:
+        # find all note share objects for the requested note to later validate 
+        # whether request.user is permitted to see it
+        note_shares = NoteShare.objects.filter(note=note)
+
+        for note_share in note_shares:
+            if note_share.shared_to == user_profile:
+                is_authorized = True
+
+    # return 404 when unauthorized person tries to access the note
+    if is_authorized != True:
+        raise Http404
+    
 
     context = {
-        'note': note
+        'note': note,
+        'is_owner': is_owner,
+        'user_profile': user_profile,
     }
 
     return render(request, 'notepad/note_entire.html', context)
+
+@login_required(login_url='/login/')
+def note_edit_view(request, *args, **kwargs):
+    # uuid should be passed in the url like "..path/<uuid>/"
+    UUID = kwargs['uuid']
+
+    user_profile = get_object_or_404(Profile, user=request.user)
+
+    note = get_object_or_404(Note, id=UUID)
+ 
+    is_authorized = False
+    is_owner = False
+
+    if user_profile == note.owner:
+        is_authorized = True
+        is_owner = True
+
+    # return 404 when unauthorized person tries to access the note
+    if is_authorized != True or is_owner != True:
+        raise Http404
+
+    form = NoteEditForm(instance=note, data=request.POST or None)
+
+    if form.is_valid():
+        form.save()
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'notepad/note_edit.html', context)
