@@ -6,7 +6,7 @@ from .models import Note, NoteShare, Profile
 
 from .forms import NoteEditForm
 
-@login_required(login_url='/login/')
+@login_required()
 def dashboard_view(request, *args, **kwargs):
     try:
         user_profile = Profile.objects.filter(user=request.user)[0]
@@ -23,7 +23,7 @@ def dashboard_view(request, *args, **kwargs):
     return render(request, 'notepad/dashboard.html', context)
 
 
-@login_required(login_url='/login/')
+@login_required()
 def note_entire_view(request, *args, **kwargs):
     # uuid should be passed in the url like "..path/<uuid>/"
     UUID = kwargs['uuid']
@@ -60,7 +60,7 @@ def note_entire_view(request, *args, **kwargs):
 
     return render(request, 'notepad/note_entire.html', context)
 
-@login_required(login_url='/login/')
+@login_required()
 def note_edit_view(request, *args, **kwargs):
     # uuid should be passed in the url like "..path/<uuid>/"
     UUID = kwargs['uuid']

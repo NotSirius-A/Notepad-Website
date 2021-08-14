@@ -146,3 +146,5 @@ STATICFILES_DIRS = [
     Path(BASE_DIR, 'notepad', 'static'),
     Path(BASE_DIR, 'my_core', 'static'),
 ]
+
+LOGIN_URL = '/account/login'

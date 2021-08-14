@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 
 from django.contrib.auth import authenticate, login
 
-from . import forms
+from .forms import CustomAuthenticationForm, CustomUserCreationForm
 
 # Create your views here.
 
@@ -10,7 +10,7 @@ def login_page_view(request, *args, **kwargs):
     if request.user.is_authenticated:
         return redirect('homepage')
 
-    form = forms.CustomAuthenticationForm(data=request.POST or None)
+    form = CustomAuthenticationForm(data=request.POST or None)
 
     if form.is_valid():
         username = request.POST.get('username')
@@ -29,3 +29,16 @@ def login_page_view(request, *args, **kwargs):
         'form': form,
     }
     return render(request, 'accounts/login_page.html', context)
+
+def user_creation_view(request, *args, **kwargs):
+
+    form = CustomUserCreationForm(data=request.POST or None)
+
+    if form.is_valid():
+        form.save()
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'accounts/user_creation.html', context)

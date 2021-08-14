@@ -23,5 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.homepage_view, name='homepage'), 
     path('notes/', include('notepad.urls')),
-    path('login/', include('accounts.urls')),
+    path('account/', include('accounts.urls')),
 ]
