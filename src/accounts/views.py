@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 from .forms import CustomAuthenticationForm, CustomUserCreationForm
 
@@ -38,7 +38,13 @@ def user_creation_view(request, *args, **kwargs):
         form.save()
 
     context = {
-        'form': form
+        'form': form,
     }
 
     return render(request, 'accounts/user_creation.html', context)
+
+
+def logout_view(request, *args, **kwargs):
+    logout(request)
+
+    return redirect('homepage')
