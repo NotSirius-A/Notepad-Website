@@ -1,10 +1,21 @@
 {% extends 'my_core/base.html' %}
 
+{% load static %}
 
-<!-- {% load static %} -->
 {% block content %}
-    <form action="" method="post">
-        {{ form.as_p }} {% csrf_token %}
-        <input type="submit" value="Login">
-    </form>
+    <link rel="stylesheet" href="{% static 'accounts/css/login_page_styles.css' %}">
+    <title>Log In</title>
+
+    <div class="main-container">
+        <div class="background">
+            <div class="main-content-container">
+                <div class="login-form-container">    
+                    <form action="" method="post" class="login-form">
+                        {{ form }} {% csrf_token %}
+                        <input type="submit" value="Login">
+                    </form>
+                </div>
+            </div>  
+        </div>
+    </div>
 {% endblock %}

@@ -7,12 +7,3 @@ html, body {
     font-size: 100%;
     font-family: 'Didact Gothic';
 }
-
-html::-webkit-scrollbar {
-    display: none;
-}
-
-html {
-    -ms-overflow-style: none;
-    scrollbar-width: none; 
-  }

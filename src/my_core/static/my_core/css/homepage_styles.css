@@ -6,6 +6,17 @@
     /* --bottom-section-background-gradient: linear-gradient(120deg, rgb(40, 145, 87) 12%, rgb(255, 255, 255) 12.2%, rgb(255, 255, 255) 92.2%, rgb(40, 145, 87) 92%); */
 }
 
+
+html::-webkit-scrollbar {
+    display: none;
+}
+
+html {
+    -ms-overflow-style: none;
+    scrollbar-width: none; 
+}
+
+
 .top-section {
     width: 100%;
     height: 100%;
