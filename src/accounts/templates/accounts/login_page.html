@@ -12,7 +12,10 @@
                 <div class="login-form-container">    
                     <form action="" method="post" class="login-form">
                         {{ form }} {% csrf_token %}
-                        <input type="submit" value="Login">
+                        <input type="submit" value="Log In">
+                    <div class="bottom-text">
+                        <span>Don't have an account yet? <a href="{% url 'signup' %}">Sign Up</a></span>
+                    </div>
                     </form>
                 </div>
             </div>  

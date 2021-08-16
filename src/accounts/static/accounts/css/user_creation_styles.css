@@ -1,11 +1,11 @@
 :root {
-    --login-form-background: rgba(255, 255, 255, 0.93);
-    --login-form-shadow: rgba(0, 0, 0, 0.2) 0.2em 0.2em 0.4em;
+    --signup-form-background: rgba(255, 255, 255, 0.93);
+    --signup-form-shadow: rgba(0, 0, 0, 0.2) 0.2em 0.2em 0.4em;
     --input-field-background: rgb(226, 226, 226);
     --input-field-background-focus: rgba(62, 100, 255, 0.25);
-    --login-form-border: 0.3em solid rgb(25, 90, 164);
-    --login-button-color: rgba(62, 100, 255);
-    --error-message-color : rgba(230, 50, 50, 0.801);
+    --signup-form-border: 0.3em solid #195aa5;
+    --signup-button-color: rgba(62, 100, 255);
+    --error-message-color : rgba(212, 28, 28, 0.877);
 }
 
 html::-webkit-scrollbar {
@@ -15,10 +15,8 @@ html::-webkit-scrollbar {
 html {
     -ms-overflow-style: none;
     scrollbar-width: none; 
-}
-
-a {
-    text-decoration: none;
+    overflow: hidden;
+    font-size: 95%;
 }
 
 .errorlist {
@@ -34,7 +32,6 @@ ul {
 .errorlist ::marker {
     content: "";
 }
-
 
 .main-container {
     width: 100%;
@@ -67,7 +64,7 @@ ul {
 
 .main-content-container {
     width: 100%;
-    height: 80%;
+    height: 90%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -75,17 +72,17 @@ ul {
 
 @media screen and (max-width: 550px){
     .main-content-container {
-        height: 92%;
+        height: 100%;
     }
 }
 
-.login-form-container {
+.signup-form-container {
     display: flex;
     justify-content: center;
 }
 
-.login-form {
-    background-color: var(--login-form-background);
+.signup-form {
+    background-color: var(--signup-form-background);
     font-size: 110%;
     display: flex;
     flex-direction: column;
@@ -93,13 +90,13 @@ ul {
     justify-content: center;
     padding: 3.5em 3.5em 2.5em 3.5em;
     width: min-content;
-    box-shadow: var(--login-form-shadow);
-    border: var(--login-form-border);
+    box-shadow: var(--signup-form-shadow);
+    border: var(--signup-form-border);
     border-radius: 0.6em;
 }
 
 @media screen and (max-width: 550px){
-    .login-form {
+    .signup-form {
         width: 95vw;
         padding: 3.5em 0 2.5em 0;
 
@@ -108,11 +105,11 @@ ul {
 }
 
 
-.login-form label {
+.signup-form label {
     font-size: 110%;
 }
 
-.login-form input {
+.signup-form input {
     background-color: var(--input-field-background);
     font-size: 120%;
     border: transparent;
@@ -122,14 +119,14 @@ ul {
     transition: all 0.4s ease-in-out;
 }
 
-.login-form input:focus-visible {
+.signup-form input:focus-visible {
     background-color: var(--input-field-background-focus)
 }
 
-.login-form input[type=submit] {
+.signup-form input[type=submit] {
     padding: 0.5em 2em 0.5em 2em;
     border-radius: 0.5em;
-    background-color: var(--login-button-color);
+    background-color: var(--signup-button-color);
     color: white;
     letter-spacing: 0.08em;
     font-family: 'Poppins';
@@ -137,7 +134,7 @@ ul {
     box-shadow: 0.06em 0.06em 0.2em rgba(0, 0, 0, 0.35);
 }
 
-.login-form input[type=submit]:hover {
+.signup-form input[type=submit]:hover {
     transition: all 0s;
     box-shadow: inset 100em 100em rgba(0, 0, 0, 0.2);
 }

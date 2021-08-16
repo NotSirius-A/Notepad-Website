@@ -1,9 +1,25 @@
 {% extends 'my_core/base.html' %}
 
-{% block content %}
+{% load static %}
 
-    <form action="" method="post">
-        {{ form }}{% csrf_token %}
-        <input type="submit" value="Sign Up">
-    </form>
+{% block content %}
+    <link rel="stylesheet" href="{% static 'accounts/css/user_creation_styles.css' %}">
+    <title>Sign Up</title>
+
+
+    <div class="main-container">
+        <div class="background">
+            <div class="main-content-container">
+                <div class="signup-form-container">    
+                    <form action="" method="post" class="signup-form">
+                        {{ form }} {% csrf_token %}
+                        <input type="submit" value="Sign Up">
+                    <div class="bottom-text">
+                        <span>Already have an account? <a href="{% url 'login' %}">Log In</a></span>
+                    </div>
+                    </form>
+                </div>
+            </div>  
+        </div>
+    </div>
 {% endblock %}

@@ -1,5 +1,5 @@
-from django.contrib.auth.forms import AuthenticationForm, UsernameField
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.models import User
 
 from notepad.models import Profile
 
@@ -13,6 +13,8 @@ class CustomAuthenticationForm(AuthenticationForm):
 
 
 class CustomUserCreationForm(UserCreationForm):
+    
+
 
     def save(self, *args, **kwargs):
         """
@@ -23,3 +25,10 @@ class CustomUserCreationForm(UserCreationForm):
 
         profile = Profile(user=user)
         profile.save()
+
+    # removing help text
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for fieldname in ['username', 'password1', 'password2']:
+            self.fields[fieldname].help_text = None
