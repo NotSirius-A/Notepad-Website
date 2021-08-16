@@ -91,7 +91,7 @@ ul {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 3.5em 3.5em 2.5em 3.5em;
+    padding: 3em 3.5em 2.2em 3.5em;
     width: min-content;
     box-shadow: var(--login-form-shadow);
     border: var(--login-form-border);
@@ -101,7 +101,7 @@ ul {
 @media screen and (max-width: 550px){
     .login-form {
         width: 95vw;
-        padding: 3.5em 0 2.5em 0;
+        padding: 1.7em 0 1.3em 0;
 
         border: transparent;
     }
@@ -120,6 +120,12 @@ ul {
     margin: 1em;
     border-radius: 0.2em;
     transition: all 0.4s ease-in-out;
+}
+
+@media screen and (max-width: 550px){
+    .login-form input {
+        margin: 0.6em;
+    }
 }
 
 .login-form input:focus-visible {
