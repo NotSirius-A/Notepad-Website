@@ -93,15 +93,12 @@ def note_edit_view(request, *args, **kwargs):
 
     note = get_object_or_404(Note, id=UUID)
  
-    is_authorized = False
     is_owner = False
 
     if user_profile == note.owner:
-        is_authorized = True
         is_owner = True
-
-    # return 404 when unauthorized person tries to access the note
-    if is_authorized != True or is_owner != True:
+    else:
+        # return 404 when unauthorized person tries to access the note
         raise Http404
 
     form = NoteCreateEditForm(instance=note, data=request.POST or None)
@@ -117,3 +114,26 @@ def note_edit_view(request, *args, **kwargs):
     }
 
     return render(request, 'notepad/note_create_edit.html', context)
+
+def note_delete_view(request, *args, **kwargs):
+    # note uuid should be passed in the url like "..path/<uuid>/"
+    UUID = kwargs['uuid']
+
+    user_profile = get_object_or_404(Profile, user=request.user)
+
+    note = get_object_or_404(Note, id=UUID)
+ 
+    is_owner = False
+
+    if user_profile == note.owner:
+        is_owner = True
+    else:
+        # return 404 when unauthorized person tries to access the note
+        raise Http404
+
+    note.delete()
+
+    return redirect('dashboard')
+
+
+

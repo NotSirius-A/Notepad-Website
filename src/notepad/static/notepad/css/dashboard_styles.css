@@ -1,7 +1,7 @@
 :root {
     --dashboard-backgroud-color: rgba(250, 250, 250, 1);
-    --note-shadow: rgba(14, 30, 37, 0.08) 0px 0.0125em 0.250em 0px, rgba(14, 30, 37, 0.15) 0px 0.1em 1em 0px;
-    --note-shadow-hover: rgba(14, 30, 37, 0.04) 0px 0.1em 0.2em 0px, rgba(14, 30, 37, 0.1) 0px 0.1em 1.5em 0px;
+    --note-shadow: rgba(14, 30, 37, 0.06) 0px 0.0125em 0.250em 0px, rgba(14, 30, 37, 0.12) 0px 0.1em 1em 0.1em;
+    --note-shadow-hover: rgba(14, 30, 37, 0.04) 0px 0.1em 0.2em 0px, rgba(14, 30, 37, 0.08) 0px 0.1em 1.5em 0px;
 }
 
 .dashboard-background {
@@ -57,7 +57,7 @@
 .note {
     width: 11vw;
     height: 11vw;
-    padding: 1.2vw;
+    padding: 1em;
     margin: 1.6vw;
     word-wrap: break-word;
     background-color: white;

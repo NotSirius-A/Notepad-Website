@@ -19,7 +19,7 @@
                         <a class="note" href="{% url 'note_entire' uuid=note.id %}">
                             <div class="note-content">
                                 <div class="note-title-container">
-                                    <span class="note-title">{{ note.title }}</span>
+                                    <span class="note-title">{{ note.get_short_title }}</span>
                                 </div>
                                 <div class="note-description-container"> 
                                     <span class="note-date-title">Last edited:</span>

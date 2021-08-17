@@ -18,4 +18,6 @@
 
 <a href="{% url 'note_edit' uuid=note.id %}"><button>EDIT</button></a>
 
+<a href="{% url 'note_delete' uuid=note.id %}"><button style="background-color:red; margin:5em;">DELETE</button></a>
+
 {% endblock %}

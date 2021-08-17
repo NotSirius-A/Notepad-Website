@@ -48,6 +48,15 @@ class Note(models.Model):
     def __str__(self):
         return f"{self.title}: {self.owner}"
 
+    def get_short_title(self):
+        MAX_LENGTH = 45
+        title = self.title
+
+        if len(title) > MAX_LENGTH:
+            title = title[:MAX_LENGTH] + "..."
+        
+        return title
+
 class NoteShare(models.Model):
     note = models.ForeignKey(Note, on_delete=models.CASCADE)
     shared_to = models.ForeignKey(Profile, on_delete=models.CASCADE)

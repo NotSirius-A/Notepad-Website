@@ -15,7 +15,9 @@
                         <span>{{ user_profile.get_shortusername }}</span><span class=><a class="logout-button" href="{% url 'logout' %}">Logout</a>
                     </div>
                     <div class="navbar-bottom">
-                        <a class="logout-button" href="{% url 'dashboard' %}">Dashboard</a>
+                        <a class="dashboard-button" href="{% url 'dashboard' %}">Dashboard</a>
+                        <a class="create-note-button" href="{% url 'note_create' %}">Add Note</a>
+                        </div>
                     </div>
                 </div>
             </nav>
