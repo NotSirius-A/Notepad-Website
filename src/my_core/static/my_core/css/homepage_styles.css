@@ -2,7 +2,8 @@
     --title-text-shadow: 0.017em 0.01em 0em rgba(20, 20, 20, 0.75), 0.032em 0.02em 0em rgb(20, 20, 20, 0.6);
     --title-font-color: rgba(255,255,255, 1);
     --getstarted-button-color: rgb(255, 255, 255);
-    --signup-buttom-color: rgb(0, 189, 9);
+    --signup-buttom-color: rgba(0, 189, 9, 1);
+    --login-button-color: rgba(62, 100, 255, 1);
     /* --bottom-section-background-gradient: linear-gradient(120deg, rgb(40, 145, 87) 12%, rgb(255, 255, 255) 12.2%, rgb(255, 255, 255) 92.2%, rgb(40, 145, 87) 92%); */
 }
 
@@ -56,6 +57,7 @@ html {
     font-size: 600%;
     font-family: 'Poppins';
     text-shadow: var(--title-text-shadow);
+    user-select: none;
 }
 
 @media screen and (max-width: 1200px){
@@ -121,24 +123,24 @@ html {
     align-items: center;
 }
 
-.bottom-title {
+.bottom-signup-title {
     margin: 1.3em;
     font-size: 3vw;
 }
 
 @media screen and (max-width: 1300px){
-    .bottom-title {
+    .bottom-signup-title {
         font-size: 7vw;
     }
 }
 
 @media screen and (max-width: 900px){
-    .bottom-title {
+    .bottom-signup-title {
         font-size: 10vw;
     }
 }
 
-.bottom-signup-button input {
+.bottom-signup-button input, .bottom-login-button input  {
     font-size: 1.5rem;
     background-color: var(--signup-buttom-color);
     color: rgba(255,255,255, 1);
@@ -149,22 +151,41 @@ html {
     border-radius: 0.8em;
     font-family: 'Poppins';
 
-    margin-bottom: 10vh;
+    margin-bottom: 7vh;
 }
 
+.bottom-login-button input {
+    font-size: 1.1rem;
+}
 
 @media screen and (max-width: 1300px){
     .bottom-signup-button input {
         font-size: 3.5vw;
     }
-}
-
-@media screen and (max-width: 1000px){
-    .bottom-signup-button input {
-        font-size: 4.5vw;
+    .bottom-login-button input {
+        font-size: 2.7vw;
     }
 }
 
-.bottom-signup-button input:hover {
-    box-shadow: inset 100em 0 rgba(0, 0, 0, 0.1);
+@media screen and (max-width: 1000px){
+    .bottom-signup-button input, .bottom-login-button input  {
+        font-size: 4.5vw;
+    }
+    .bottom-login-button input {
+        font-size: 3.6vw;
+    }
+}
+
+.bottom-signup-button input:hover, .bottom-login-button input:hover  {
+    box-shadow: inset 100em 0 rgba(0, 0, 0, 0.15);
+}
+
+.bottom-login-title {
+    font-size: 190%;
+    margin: 0.5em;
+}
+
+.bottom-login-button input {
+    margin: 1em 0em 2em 0em;
+    background-color: var(--login-button-color);
 }

@@ -4,7 +4,6 @@
 {% block content %}
     <title>Notepad - Get Started</title>
     <link rel="stylesheet" href="{% static 'my_core/css/homepage_styles.css' %}">
-    <script src="{% static 'my_core/js/scroll.js' %}"></script>
 
     <div class="main-container">
 
@@ -13,10 +12,10 @@
                 <div class="top-content-container">
 
                     <div class="top-title">
-                        <span>Free Notepad</span>
+                        <span>Online Notepad</span>
                     </div>
                     <div class="top-subtitle">
-                        <span>Lorem Ipsum</span>
+                        <span>100% Open Source</span>
                     </div>
                     <div class="top-getstarted-button">
                         <a href="#get-started">
@@ -31,24 +30,32 @@
         <section class="bottom-section" id="get-started">
             <div class="bottom-background">
                 <div class="bottom-content-container">
-                    <div class="bottom-title">
+                    <div class="bottom-signup-title">
                         <span>Sign Up for Free</span>
                     </div>
                     <div class="bottom-signup-button">
                         <a href="{% url 'signup' %}">
-                            <input type="submit" value="Sign up" /> 
+                            <input type="submit" value="Sign Up" /> 
                         </a>
                     </div>
-                    <h1>sdfsdfsdf</h1>
-                    <h1>sdfsdfsdf</h1>
-                    <h1>sdfsdfsdf</h1>
-                    <h1>sdfsdfsdf</h1>
-                    <h1>sdfsdfsdf</h1>
-                    <h1>sdfsdfsdf</h1>
-                    <h1>sdfsdfsdf</h1>
-                    <h1>sdfsdfsdf</h1>
-                    <h1>sdfsdfsdf</h1>
-                    <h1>sdfsdfsdf</h1>
+
+                    <div class="bottom-login-title">
+                        <span>or Log In</span>
+                    </div>
+                    <div class="bottom-login-button">
+                        <a href="{% url 'login' %}">
+                            <input type="submit" value="Log In" /> 
+                        </a>
+                    </div>
+                    <p>Lorem Ipsum</p>
+                    <p>Lorem Ipsum</p>
+                    <p>Lorem Ipsum</p>
+                    <p>Lorem Ipsum</p>
+                    <p>Lorem Ipsum</p>
+                    <p>Lorem Ipsum</p>
+                    <p>Lorem Ipsum</p>
+                    <p>Lorem Ipsum</p>
+                    <p>Lorem Ipsum</p>
                 </div>
             </div>
         </section>
