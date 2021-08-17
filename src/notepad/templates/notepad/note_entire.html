@@ -16,4 +16,6 @@
 
 <p>is_owner: {{ is_owner }}</p>
 
+<a href="{% url 'note_edit' uuid=note.id %}"><button>EDIT</button></a>
+
 {% endblock %}

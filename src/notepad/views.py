@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
 from .models import Note, NoteShare, Profile
 
@@ -78,13 +79,14 @@ def note_create_view(request, *args, **kwargs):
 
     context = {
         'form': form,
-        'FRONTENDINFO_action': 'CREATE'
+        'FRONTENDINFO_action': 'CREATE',
+        'user_profile': user_profile,
     }
     return render(request, 'notepad/note_create_edit.html', context)
 
 @login_required()
 def note_edit_view(request, *args, **kwargs):
-    # uuid should be passed in the url like "..path/<uuid>/"
+    # note uuid should be passed in the url like "..path/<uuid>/"
     UUID = kwargs['uuid']
 
     user_profile = get_object_or_404(Profile, user=request.user)
@@ -106,10 +108,12 @@ def note_edit_view(request, *args, **kwargs):
 
     if form.is_valid():
         form.save()
+        return HttpResponseRedirect(reverse("note_entire", args=[f"{UUID}"]))
 
     context = {
         'form': form,
-        'FRONTENDINFO_action': 'EDIT'
+        'FRONTENDINFO_action': 'EDIT',
+        'user_profile': user_profile,
     }
 
     return render(request, 'notepad/note_create_edit.html', context)

@@ -11,7 +11,12 @@
         <div class="navbar-container">
             <nav class="navbar">
                 <div class="navbar-content-container">
-                    <span>{{ user_profile.get_shortusername }}</span><span class=><a class="logout-button" href="{% url 'logout' %}">Logout</a>
+                    <div class="navbar-top">
+                        <span>{{ user_profile.get_shortusername }}</span><span class=><a class="logout-button" href="{% url 'logout' %}">Logout</a>
+                    </div>
+                    <div class="navbar-bottom">
+                        <a class="logout-button" href="{% url 'dashboard' %}">Dashboard</a>
+                    </div>
                 </div>
             </nav>
         </div>

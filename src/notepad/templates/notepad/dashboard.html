@@ -16,13 +16,17 @@
             <div class="note-list-container">
                 <div class="note-list">
                     {% for note in notes %}
-                        <div class="note">
-                            <a class="note-link" href="{% url 'note_entire' uuid=note.id %}">
-                                <div class="note-content">
+                        <a class="note" href="{% url 'note_entire' uuid=note.id %}">
+                            <div class="note-content">
+                                <div class="note-title-container">
                                     <span class="note-title">{{ note.title }}</span>
                                 </div>
-                            </a>
-                        </div>
+                                <div class="note-description-container"> 
+                                    <span class="note-date-title">Last edited:</span>
+                                    <span class="note-date-edited">{{ note.date_edited }}</span>
+                                </div>
+                            </div>
+                        </a>
                     {% endfor %}
                 </div>
             </div>
