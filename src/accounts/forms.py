@@ -26,6 +26,8 @@ class CustomUserCreationForm(UserCreationForm):
         profile = Profile(user=user)
         profile.save()
 
+        return profile, user
+
     # removing help text
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

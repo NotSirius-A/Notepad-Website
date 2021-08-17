@@ -31,11 +31,16 @@ def login_page_view(request, *args, **kwargs):
     return render(request, 'accounts/login_page.html', context)
 
 def user_creation_view(request, *args, **kwargs):
+    if request.user.is_authenticated:
+        return redirect('homepage')
 
     form = CustomUserCreationForm(data=request.POST or None)
 
     if form.is_valid():
-        form.save()
+        profile,user = form.save()
+        login(request, user)
+        return redirect('homepage')
+
 
     context = {
         'form': form,

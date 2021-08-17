@@ -13,6 +13,16 @@ class Profile(models.Model):
     def __str__(self):
         return str(self.id)
 
+    def get_shortusername(self):
+        MAX_LENGTH = 25
+        username = str(self.user)
+
+        if len(username) > MAX_LENGTH:
+            username = username[:MAX_LENGTH] + "..."
+
+        return username
+            
+
 
 class Note(models.Model):
     MAX_NOTE_LENGTH = int(1e+4)

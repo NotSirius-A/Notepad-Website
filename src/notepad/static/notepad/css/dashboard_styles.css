@@ -1,0 +1,80 @@
+:root {
+    --note-shadow: rgba(14, 30, 37, 0.1) 0px 0.0125em 0.250em 0px, rgba(14, 30, 37, 0.2) 0px 0.1em 1em 0px;
+    --note-shadow-hover: rgba(14, 30, 37, 0.08) 0px 0.1em 0.2em 0px, rgba(14, 30, 37, 0.15) 0px 0.1em 1.5em 0px;
+}
+
+.dashboard-background {
+    height: 100%;
+    min-height: 100vh;
+    background-color: rgba(241, 241, 241, 0.8);
+}
+
+.note-list-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.note-list {
+    width: 65vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+@media screen and (max-width: 1150px) {
+    .note-list {
+        width: 85vw;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .note-list {
+        width: 95vw;
+    }
+}
+
+
+.note {
+    width: 8.7vw;
+    height: 8.7vw;
+    padding: 1vw;
+    margin: 1.5vw;
+    word-wrap: break-word;
+    background-color: white;
+    box-shadow: var(--note-shadow);
+    transition: all .2s ease-out;
+    border-radius: 3%;
+}
+
+@media screen and (max-width: 1000px) {
+    .note {
+        width: 30vw;
+        height: 30vw;
+        margin: 3vw;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .note {
+        width: 70vw;
+        height: 70vw;
+        margin: 0;
+        margin-bottom: 6vh;
+    }
+}
+
+
+.note:hover {
+    box-shadow: var(--note-shadow-hover);
+    background-color: var(--theme-color);
+    color: white;
+}
+
+.note-link {
+    text-decoration: none;
+    color: inherit;
+}
+

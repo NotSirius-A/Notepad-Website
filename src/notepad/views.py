@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Note, NoteShare, Profile
 
-from .forms import NoteEditForm
+from .forms import NoteCreateEditForm
 
 @login_required()
 def dashboard_view(request, *args, **kwargs):
@@ -60,6 +60,28 @@ def note_entire_view(request, *args, **kwargs):
 
     return render(request, 'notepad/note_entire.html', context)
 
+@login_required
+def note_create_view(request, *args, **kwargs):
+    user_profile = get_object_or_404(Profile, user=request.user)
+
+    form = NoteCreateEditForm(data = request.POST or None)
+
+    if form.is_valid():
+        print(form.data)
+    
+        # automatically assign user as an owner
+        note = form.save(commit=False)
+        note.owner = user_profile
+        note.save()
+
+        return redirect('dashboard')
+
+    context = {
+        'form': form,
+        'FRONTENDINFO_action': 'CREATE'
+    }
+    return render(request, 'notepad/note_create_edit.html', context)
+
 @login_required()
 def note_edit_view(request, *args, **kwargs):
     # uuid should be passed in the url like "..path/<uuid>/"
@@ -80,13 +102,14 @@ def note_edit_view(request, *args, **kwargs):
     if is_authorized != True or is_owner != True:
         raise Http404
 
-    form = NoteEditForm(instance=note, data=request.POST or None)
+    form = NoteCreateEditForm(instance=note, data=request.POST or None)
 
     if form.is_valid():
         form.save()
 
     context = {
-        'form': form
+        'form': form,
+        'FRONTENDINFO_action': 'EDIT'
     }
 
-    return render(request, 'notepad/note_edit.html', context)
+    return render(request, 'notepad/note_create_edit.html', context)

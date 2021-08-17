@@ -1,13 +1,28 @@
 {% extends 'my_core/base.html' %}
 
+{% load static %}
 
 {% block content %}
 
-<p>notepad base</p>
+<link rel="stylesheet" href="{% static 'notepad/css/notepad_base_styles.css' %}">
 
-    {% block notepad_content %}
-        replace me
-    {% endblock %}
+<div class="main-container">
+    <div class="main-background">
+        <div class="navbar-container">
+            <nav class="navbar">
+                <div class="navbar-content-container">
+                    <span>{{ user_profile.get_shortusername }}</span><span class=><a class="logout-button" href="{% url 'logout' %}">Logout</a>
+                </div>
+            </nav>
+        </div>
 
+        <div class="main-content-container">
+            {% block notepad_content %}
+                replace me
+            {% endblock %}
+        </div>
+
+    </div>
+</div>
 
 {% endblock %}
