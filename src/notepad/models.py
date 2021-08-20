@@ -11,7 +11,7 @@ class Profile(models.Model):
         pass
 
     def __str__(self):
-        return str(self.id)
+        return str(self.user.username)
 
     def get_shortusername(self):
         MAX_LENGTH = 25

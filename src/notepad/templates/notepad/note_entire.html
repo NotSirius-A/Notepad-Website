@@ -1,23 +1,33 @@
 {% extends 'notepad/notepad_base.html' %}
 
+{% load static %}
+
 {% block notepad_content %}
+<title>{{ note.get_short_title }}</title>
+<link rel="stylesheet" href="{% static 'notepad/css/note_entire_styles.css' %}">
 
-<h1>{{ note.id }}</h1>
+<div class="note-entire-container">
+    <div class="note-entire-background">
+        <div class="note-entire-content-container">
+                <div class="note">
+                    <span class="note-title">{{ note.title }}</span>
+                    <span class="note-body">{{ note.body }}</span>
+                    <span class="note-date-edited">{{ note.date_edited }}</span>
+                    <span class="note-date-created">{{ note.date_created }}</span>
+                    <span class="note-owner">{{ note.owner }}</span>
+                </div>
+                {% if is_owner %}
+                <div class="action-buttons-container">
+                    <a href="{% url 'note_edit' uuid=note.id %}"><button>EDIT</button></a>
 
-<p>title: {{ note.title }}</p>
+                    <a href="{% url 'note_delete' uuid=note.id %}"><button style="background-color:red; margin:5em;">DELETE</button></a>
+                    
+                    <a href="{% url 'note_edit' uuid=note.id %}"><button>SHARE</button></a>
+                </div>
+                {% endif %}
+        </div>
+    </div>
+</div>
 
-<p>body: {{ note.body }}</p>
-
-<p>owner: {{ note.owner }}</p>
-
-<p>date_created: {{ note.date_created }}</p>
-
-<p>date_edited: {{ note.date_edited }}</p>
-
-<p>is_owner: {{ is_owner }}</p>
-
-<a href="{% url 'note_edit' uuid=note.id %}"><button>EDIT</button></a>
-
-<a href="{% url 'note_delete' uuid=note.id %}"><button style="background-color:red; margin:5em;">DELETE</button></a>
 
 {% endblock %}

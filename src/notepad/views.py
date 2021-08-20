@@ -12,13 +12,22 @@ def dashboard_view(request, *args, **kwargs):
     try:
         user_profile = Profile.objects.filter(user=request.user)[0]
     except IndexError:
-        raise Exception("Profile must be created alongside django-user, django-user without a profile tried to log in")
+        raise Exception("Django-user without a profile tried to log in. Profile must be created alongside django-user.")
 
     notes = Note.objects.filter(owner=user_profile)
+
+    noteshares = NoteShare.objects.filter(shared_to=user_profile)
+
+    notes_shared_with_user = []
+
+    # shared_notes retrival can probably be optimized
+    for noteshare in noteshares:
+        notes_shared_with_user.append(noteshare.note)
 
     context = {
         'user_profile': user_profile,
         'notes': notes,
+        'notes_shared_with_user': notes_shared_with_user
     }
 
     return render(request, 'notepad/dashboard.html', context)
