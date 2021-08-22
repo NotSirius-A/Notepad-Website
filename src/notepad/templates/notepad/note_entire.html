@@ -10,20 +10,28 @@
     <div class="note-entire-background">
         <div class="note-entire-content-container">
                 <div class="note">
+                    <div class="note-main-content">
                     <span class="note-title">{{ note.title }}</span>
-                    <span class="note-body">{{ note.body }}</span>
-                    <span class="note-date-edited">{{ note.date_edited }}</span>
-                    <span class="note-date-created">{{ note.date_created }}</span>
-                    <span class="note-owner">{{ note.owner }}</span>
+                    <span class="note-body">{{ note.body|linebreaks }}</span>
+                    </div>
+                    <div class="note-sub-content">
+                    <span class="note-date-edited"><label>Edited: </label>{{ note.date_edited }}</span>
+                    <span class="note-date-created"><label>Created: </label>{{ note.date_created }}</span>
+                    <span class="note-owner"><label>Note Owner: </label>{{ note.owner }}</span>
+                    </div>
                 </div>
                 {% if is_owner %}
-                <div class="action-buttons-container">
-                    <a href="{% url 'note_edit' uuid=note.id %}"><button>EDIT</button></a>
-
-                    <a href="{% url 'note_delete' uuid=note.id %}"><button style="background-color:red; margin:5em;">DELETE</button></a>
-                    
-                    <a href="{% url 'note_edit' uuid=note.id %}"><button>SHARE</button></a>
-                </div>
+                    <div class="action-buttons-container">
+                        <div class="edit-button-container">
+                        <a href="{% url 'note_edit' uuid=note.id %}"><button>EDIT</button></a>
+                        </div>
+                        <div class="share-button-container">
+                        <a href="{% url 'note_edit' uuid=note.id %}"><button>SHARE</button></a>
+                        </div>
+                        <div class="delete-button-container">
+                        <a href="{% url 'note_delete' uuid=note.id %}"><button>DELETE</button></a>
+                        </div>
+                    </div>
                 {% endif %}
         </div>
     </div>

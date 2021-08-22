@@ -32,9 +32,9 @@ class Note(models.Model):
 
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
-    body = models.CharField(max_length=MAX_NOTE_LENGTH, blank=True, null=True, default=None)
+    body = models.CharField(max_length=MAX_NOTE_LENGTH)
 
-    title = models.CharField(max_length=MAX_TITLE_LENGTH, blank=True, null=True, default=None)
+    title = models.CharField(max_length=MAX_TITLE_LENGTH)
 
     date_created = models.DateTimeField(auto_now_add=True)
 

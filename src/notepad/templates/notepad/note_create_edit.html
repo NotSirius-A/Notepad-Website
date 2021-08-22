@@ -1,13 +1,50 @@
 {% extends 'notepad/notepad_base.html' %}
 
 
+{% load static %}
+
 {% block notepad_content %}
 
 
-<form action="" method="post">
-    {{ form }}{% csrf_token %}
-    <input type="submit" value="edit">
-</form>
+<title>{{ note.get_short_title }}</title>
+<link rel="stylesheet" href="{% static 'notepad/css/note_entire_styles.css' %}">
+<link rel="stylesheet" href="{% static 'notepad/css/note_create_edit_styles.css' %}">
+
+<div class="note-entire-container">
+    <div class="note-entire-background">
+        <div class="note-entire-content-container">
+                <div class="note">
+                    <div class="note-main-content">
+                        <form action="" method="post">
+                            {{ form }}{% csrf_token %}
+
+                    {% if note is not None %}
+                        <div class="note-sub-content">
+                        <span class="note-date-edited"><label>Edited: </label>{{ note.date_edited }}</span>
+                        <span class="note-date-created"><label>Created: </label>{{ note.date_created }}</span>
+                        <span class="note-owner"><label>Note Owner: </label>{{ note.owner }}</span>
+                        </div>
+                    {% endif %}
+
+                    </div>
+                            {% if FRONTENDINFO_action == 'EDIT' %}
+                                <div class='edit-button-container'>
+                                    <button class="edit-button" type="submit">EDIT</button>
+                                </div>
+                            {% elif FRONTENDINFO_action == 'CREATE' %}
+                                <div class='create-button-container'>
+                                    <button class="create-button" type="submit">CREATE</button>
+                                </div>
+                            {% else %}
+                                <span>SERVER ERROR, PASS "FRONTENDINFO_action" variable into template</span>
+                            {% endif %}
+                        </form>
+                </div>
+        </div>
+    </div>
+</div>
+
+
 
 {% endblock notepad_content %}
 

@@ -66,6 +66,7 @@ def note_entire_view(request, *args, **kwargs):
         'note': note,
         'is_owner': is_owner,
         'user_profile': user_profile,
+        'FRONTENDINFO_action': 'VIEW',
     }
 
     return render(request, 'notepad/note_entire.html', context)
@@ -117,6 +118,7 @@ def note_edit_view(request, *args, **kwargs):
         return HttpResponseRedirect(reverse("note_entire", args=[f"{UUID}"]))
 
     context = {
+        'note': note,
         'form': form,
         'FRONTENDINFO_action': 'EDIT',
         'user_profile': user_profile,
