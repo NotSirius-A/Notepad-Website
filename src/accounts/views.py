@@ -1,6 +1,10 @@
-from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.http.response import HttpResponse
+from django.shortcuts import get_object_or_404, render, redirect
 
 from django.contrib.auth import authenticate, login, logout
+
+from notepad.models import Profile
 
 from .forms import CustomAuthenticationForm, CustomUserCreationForm
 
@@ -53,3 +57,13 @@ def logout_view(request, *args, **kwargs):
     logout(request)
 
     return redirect('homepage')
+
+@login_required
+def secrets_view(request, *args, **kwargs):
+    user_profile = get_object_or_404(Profile, user=request.user)
+
+    context = {
+        'user_profile': user_profile,
+    }
+
+    return render(request, 'accounts/user_secrets.html', context)

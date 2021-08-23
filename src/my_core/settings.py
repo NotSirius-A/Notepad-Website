@@ -148,4 +148,4 @@ STATICFILES_DIRS = [
     Path(BASE_DIR, 'accounts', 'static'),
 ]
 
-LOGIN_URL = '/account/login'
+LOGIN_URL = '/user/login'

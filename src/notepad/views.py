@@ -85,7 +85,7 @@ def note_create_view(request, *args, **kwargs):
         note.owner = user_profile
         note.save()
 
-        return redirect('dashboard')
+        return HttpResponseRedirect(reverse("note_entire", args=[f"{note.id}"]))
 
     context = {
         'form': form,
@@ -126,6 +126,7 @@ def note_edit_view(request, *args, **kwargs):
 
     return render(request, 'notepad/note_create_edit.html', context)
 
+@login_required()
 def note_delete_view(request, *args, **kwargs):
     # note uuid should be passed in the url like "..path/<uuid>/"
     UUID = kwargs['uuid']
@@ -147,4 +148,6 @@ def note_delete_view(request, *args, **kwargs):
     return redirect('dashboard')
 
 
-
+@login_required()
+def note_share_view(request, *args, **kwargs):
+    pass

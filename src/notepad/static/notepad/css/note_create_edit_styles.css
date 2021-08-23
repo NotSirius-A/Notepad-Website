@@ -32,7 +32,7 @@ button {
 
 @media screen and (max-width: 600px) {
     .note-title {
-        font-size: 6vw !important;
+        font-size: 120% !important;
     }
 }
 
