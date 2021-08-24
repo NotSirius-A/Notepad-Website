@@ -1,7 +1,8 @@
 from django import forms
-from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ValidationError
+from django.shortcuts import get_object_or_404
 
-from .models import Note
+from .models import Note, NoteShare, Profile
 
 class NoteCreateEditForm(forms.ModelForm):
     
@@ -25,3 +26,30 @@ class NoteCreateEditForm(forms.ModelForm):
             'body': '',
         }
 
+class NoteShareForm(forms.Form):
+
+    uuid = forms.UUIDField(
+        label="User",
+        error_messages={
+            'invalid': "Enter a valid ID"
+        }
+    )
+
+    class Meta:
+        pass
+
+    def clean_uuid(self):
+        data = super().clean()
+
+        print(data)
+
+        if len(self.errors) > 0:
+            return data
+
+        try:
+            Profile.objects.get(id=data['uuid'])
+        except Exception as e:
+            raise ValidationError('No users with such ID')
+
+        return data['uuid']
+    

@@ -43,7 +43,7 @@ class Note(models.Model):
     # models.ImageField
 
     class Meta:
-        pass
+        ordering = ['-date_edited']
 
     def __str__(self):
         return f"{self.title}: {self.owner}"

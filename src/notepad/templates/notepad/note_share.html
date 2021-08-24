@@ -1,0 +1,40 @@
+{% extends 'notepad/notepad_base.html' %}
+
+{% load static %}
+
+{% block notepad_content %}
+
+<title>{{ note.get_short_title }}</title>
+<link rel="stylesheet" href="{% static 'notepad/css/note_entire_styles.css' %}">
+<link rel="stylesheet" href="{% static 'notepad/css/note_create_edit_styles.css' %}">
+
+<div class="note-entire-container">
+    <div class="note-entire-background">
+        <div class="note-entire-content-container">
+                <div class="note">
+                    <div class="note-main-content">
+                        <form action="" method="post">
+                            {{ form }}{% csrf_token %}
+
+                        <div class="note-sub-content">
+                            <span class="note-date-edited"><label>Edited: </label>{{ note.date_edited }}</span>
+                            <span class="note-date-created"><label>Created: </label>{{ note.date_created }}</span>
+                            <span class="note-owner"><label>Note Owner: </label>{{ note.owner }}</span>
+                        </div>
+
+                    </div>
+
+                            <div class='share-button-container'>
+                                <button class="share-button" type="submit">SHARE</button>
+                            </div>
+
+                        </form>
+                </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock notepad_content %}

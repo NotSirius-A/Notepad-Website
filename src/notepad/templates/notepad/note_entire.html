@@ -23,13 +23,13 @@
                 {% if is_owner %}
                     <div class="action-buttons-container">
                         <div class="edit-button-container">
-                        <a href="{% url 'note_edit' uuid=note.id %}"><button>EDIT</button></a>
+                            <a href="{% url 'note_edit' uuid=note.id %}"><button>EDIT</button></a>
                         </div>
                         <div class="share-button-container">
-                        <a href="{% url 'note_edit' uuid=note.id %}"><button>SHARE</button></a>
+                            <a href="{% url 'note_share' uuid=note.id %}"><button>SHARE</button></a>
                         </div>
                         <div class="delete-button-container">
-                        <a href="{% url 'note_delete' uuid=note.id %}"><button>DELETE</button></a>
+                            <a href="{% url 'note_delete' uuid=note.id %}"><button>DELETE</button></a>
                         </div>
                     </div>
                 {% endif %}

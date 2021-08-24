@@ -5,7 +5,7 @@ from django.urls import reverse
 
 from .models import Note, NoteShare, Profile
 
-from .forms import NoteCreateEditForm
+from .forms import NoteCreateEditForm, NoteShareForm
 
 @login_required()
 def dashboard_view(request, *args, **kwargs):
@@ -23,6 +23,9 @@ def dashboard_view(request, *args, **kwargs):
     # shared_notes retrival can probably be optimized
     for noteshare in noteshares:
         notes_shared_with_user.append(noteshare.note)
+
+    # sort notes with respect to date_edited
+    notes_shared_with_user = sorted(notes_shared_with_user, key=lambda x: x.date_edited, reverse=True)
 
     context = {
         'user_profile': user_profile,
@@ -150,4 +153,38 @@ def note_delete_view(request, *args, **kwargs):
 
 @login_required()
 def note_share_view(request, *args, **kwargs):
-    pass
+    # note uuid should be passed in the url like "..path/<uuid>/"
+    UUID = kwargs['uuid']
+
+    user_profile = get_object_or_404(Profile, user=request.user)
+
+    note = get_object_or_404(Note, id=UUID)
+ 
+    is_owner = False
+
+    if user_profile == note.owner:
+        is_owner = True
+    else:
+        # return 404 when unauthorized person tries to access the note
+        raise Http404
+
+    form = NoteShareForm(request.POST or None)
+
+    if form.is_valid():
+        try:
+            target_user_uuid = form.cleaned_data['uuid']
+        except:
+            raise Exception("form needs to have a UUID field")
+        
+        target_user_profile = get_object_or_404(Profile, id=target_user_uuid)
+
+        note_share = NoteShare(shared_to=target_user_profile, note=note)
+        note_share.save()
+
+    context = {
+        'note': note,
+        'user_profile': user_profile,
+        'form': form,
+    }
+
+    return render(request, 'notepad/note_share.html', context)
