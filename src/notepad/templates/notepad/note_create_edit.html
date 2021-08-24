@@ -5,8 +5,13 @@
 
 {% block notepad_content %}
 
-
-<title>{{ note.get_short_title }}</title>
+{% if FRONTENDINFO_action == 'EDIT' %}
+    <title>Edit - {{ note.get_short_title }}</title>
+{% elif FRONTENDINFO_action == 'CREATE' %}
+    <title>Create a Note</title>
+{% else %}
+    <title>SERVER ERROR, PASS "FRONTENDINFO_action" variable into template</title>
+{% endif %}
 <link rel="stylesheet" href="{% static 'notepad/css/note_entire_styles.css' %}">
 <link rel="stylesheet" href="{% static 'notepad/css/note_create_edit_share_styles.css' %}">
 
