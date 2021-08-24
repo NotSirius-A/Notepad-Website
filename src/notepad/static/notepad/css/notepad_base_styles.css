@@ -1,7 +1,8 @@
 :root {
     --main-background-color: rgba(235,235,235,1);
-    --theme-color: rgba(195, 8, 63, 1);
-    --bottom-navbar-color: rgba(195, 8, 63, 1);
+    /* --theme-color: rgba(195, 8, 63, 1); */
+    --theme-color: rgb(25, 74, 164);
+    --bottom-navbar-color: var(--theme-color);
     --navbar-create-note-section-background: rgba(200,200,200,0);
     --create-note-button-color: var(--theme-color);
 }

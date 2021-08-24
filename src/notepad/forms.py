@@ -29,10 +29,11 @@ class NoteCreateEditForm(forms.ModelForm):
 class NoteShareForm(forms.Form):
 
     uuid = forms.UUIDField(
-        label="User",
+        label="Recipient-User ID",
         error_messages={
             'invalid': "Enter a valid ID"
-        }
+        },
+        help_text='Ask the recipient for a secret User ID, which can be found in the "Secrets" tab.',
     )
 
     class Meta:
