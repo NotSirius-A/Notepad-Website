@@ -17,6 +17,12 @@ import environ
 env = environ.Env(
     DEBUG=(bool, False),
     SECRET_KEY=(str, '7d2*#qs-^i(xr%*h5b$=xn*a6-!4i$5-(326i1zwdrjhsetmm$'),
+    DB_ENGINE=(str, 'django.db.backends.postgresql'),
+    DB_NAME=(str, ''),
+    DB_USER=(str, ''),
+    DB_PASSWORD=(str, ''),
+    DB_HOST=(str, ''),
+    DB_PORT=(int, 5432),
 )
 
 environ.Env.read_env()
@@ -96,8 +102,12 @@ WSGI_APPLICATION = 'my_core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': env('DB_ENGINE'),
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),
+        'PORT': env('DB_PORT'),
     }
 }
 

@@ -75,7 +75,8 @@ input[id=id_uuid] {
 }
 
 input[id=id_uuid]:focus-visible {
-    background-color: lightgray;
+    box-shadow: inset 100em 100em rgba(20,20,20,0.3);
+    border: transparent;
 }
 
 label[for=id_uuid] {
