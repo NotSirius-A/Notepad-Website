@@ -140,7 +140,8 @@ html {
     text-align: center;
     padding: 1.3em;
     margin: 3em 0em 3em 0;
-    background-color: rgba(20,20,20,0.05);
+    background-color: rgba(20,20,20,0.01);
+    border: 0.15em solid var(--bottom-getstarted-button-color);
     border-radius: 0.3em;
     font-size: 135%;
     letter-spacing: 0.015em;
