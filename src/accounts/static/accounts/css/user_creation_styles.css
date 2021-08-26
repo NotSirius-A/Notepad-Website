@@ -19,6 +19,10 @@ html {
     font-size: 95%;
 }
 
+a {
+    text-decoration: none;
+}
+
 .errorlist {
     color: var(--error-message-color);
     font-size: 80%;
@@ -48,7 +52,7 @@ ul {
     width: 100%;
     height: 100%;
     background-color: lightgray;
-    background-image: url("../img/background_login-blurred.jpg");
+    background-image: url("../img/background_login_blurred.jpg");
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
