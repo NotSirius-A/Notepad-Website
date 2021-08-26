@@ -74,11 +74,6 @@ input[id=id_uuid] {
     transition: all 0.2s ease-out;
 }
 
-input[id=id_uuid]:focus-visible {
-    box-shadow: inset 100em 100em rgba(20,20,20,0.3);
-    border: transparent;
-}
-
 label[for=id_uuid] {
     padding: 1em 0em 0.5em 0em;
 }
