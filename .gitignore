@@ -133,3 +133,7 @@ dmypy.json
 # VS Code
 workspace.code-workspace
 .code-workspace
+
+# env
+deployment/django/django_prod.env
+deployment/postgresql/postgresql_prod.env
