@@ -180,6 +180,8 @@ def note_share_view(request, *args, **kwargs):
 
         note_share = NoteShare(shared_to=target_user_profile, note=note)
         note_share.save()
+        
+        return redirect('dashboard')
 
     context = {
         'note': note,
