@@ -1,8 +1,11 @@
 # Notepad-Webiste
-
 Website where users can create and share notes
 
-Core functionalities/choices:
+## Documentation
+Documentation can be found in the docs/ directory
+
+## Design
+#### Core functionalities/choices:
 <ul>
     <li> Fast - least time to create notes </li>
     <li> Simple/clean UI </li>
@@ -12,7 +15,7 @@ Core functionalities/choices:
     <li> Support for mobiles </li>
 </ul>
 
-Things to consider/ideas/for future updates:
+#### Things to consider/ideas/for future updates:
 <ul>
     <li> API to access notes. Not really needed, but i want to learn REST </li>
     <li> Note encryption </li>
