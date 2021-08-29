@@ -1,18 +1,18 @@
 Website where users can create notes
 
 Core functionalities/choices:
- - fast - least time to create notes
- - simple/clean UI
- - few features, just basic write/read/edit/delete notes
- - notes are persistent and tied to a user
- - individual notes can be shared between users, but only owner can edit/delete
- - works on mobile
-+API to access notes. Not really needed, but i want to learn REST
+    - Fast - least time to create notes
+    - Simple/clean UI
+    - Few features, just basic write/read/edit/delete notes
+    - Notes are persistent and tied to a user
+    - Individual notes can be shared between users, but only owner can edit/delete
+    - Support for mobiles
 
 
-Things to consider/ideas:
-- built-in note encryption (i already have an algorithm in python on github)
-- complex API
-- HTML tags allowed inside notes
-- auto deleting notes after some time
-- custom user created categories for notes
+Things to consider/ideas/for future updates:
+    - API to access notes. Not really needed, but i want to learn REST
+    - Note encryption
+    - HTML tags allowed inside notes
+    - Auto deleting notes after some time
+    - Custom user created categories for notes
+    - Middleware for traffic logs

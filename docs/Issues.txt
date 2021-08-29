@@ -1,0 +1,17 @@
+Unfortunately (at the time of writing this), I don't know JavaScript, which generated some problems:
+    - Instead of programming many django-views for functions like "delete" "view_entire" etc. I should've made an API and make API calls with JS
+    - I don't yet know how to make the "Are you sure?" pop-up when user wants perform a permanent action, like note deletion
+
+
+If this list is still here it means I didn't have time to take care of these issues:
+    - No docstrings
+    - Possibly SQL queries can be optimized (probably there are near-duplicate queries in some places, I should use django debug-toolbar)
+    - Notepad app view functions don't follow DRY, CBV would probably work well here
+    - Users can share a note multiple times to the same recipient
+    - Users can share notes without direct consent from the reciever
+    - Users can't unshare notes
+    - User can share a note to themselves
+    - CSS files can probably be optimzed, by joining some parts together (less requests)
+    - Website security seems good, django handles most possible vulnerabilites by default,
+      altough there probably are some Nginx settings that should be tweaked, for example directory indexing
+    - No internationalization
