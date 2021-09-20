@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     'accounts',
     'my_core',
     'notepad',
+    'api',
+
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

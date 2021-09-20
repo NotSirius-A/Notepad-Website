@@ -24,4 +24,5 @@ urlpatterns = [
     path('', views.homepage_view, name='homepage'), 
     path('notes/', include('notepad.urls')),
     path('user/', include('accounts.urls')),
+    path('api/', include('api.urls')),
 ]

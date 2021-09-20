@@ -20,7 +20,6 @@ Table Note {
   title varchar
   date_created date
   date_edited date
-  image image
   }
 
 Table NoteShare {

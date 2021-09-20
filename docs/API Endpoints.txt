@@ -1,0 +1,21 @@
+Endpoints (all begin with hostname url):
+
+    - Endpoint list: GET "/api"
+
+    - Note Create: POST "/api/note/"
+    request body {
+        title: <title>,
+        body: <body>,
+    }
+
+    - Note Retrieve: GET "/api/note/<note_uuid>"
+
+    - Note Update: PUT "/api/note/<note-uuid>" 
+    request body {
+        title: <new title> or leave blank to not update,
+        body: <new body> or leave blank to not update,
+    }
+
+    - Note Delete: DELETE "/api/note/<note_uuid>" 
+
+    - Retrieve list of all notes by a user: GET "/api/<user_id>/notes"
