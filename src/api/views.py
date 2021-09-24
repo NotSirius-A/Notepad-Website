@@ -6,6 +6,7 @@ from notepad.models import Note, Profile
 
 from .authenticators import NoteAuthenticator
 from .serializers import NoteSerializer
+from .permissions import IsNoteOwner
 
 from rest_framework.response import Response
 from rest_framework import viewsets
@@ -19,10 +20,7 @@ class NoteViewSet(viewsets.ModelViewSet):
     serializer_class = NoteSerializer
     lookup_field = 'id'
     authentication_classes = [NoteAuthenticator]
-
-    def retrieve(self, request, *args, **kwargs):
-        print(request.user, request.auth)
-        return super().retrieve(request, *args, **kwargs)
+    permission_classes = [IsNoteOwner]
 
     def perform_create(self, serializer):
         # this method needs to be overriden,
