@@ -1,8 +1,10 @@
+All requests must be authenticated with headers, see API.txt for more info
+
 Endpoints (all begin with hostname url):
 
-    - Endpoint list: GET "/api"
+    - Root: GET "/api"
 
-    - Note Create: POST "/api/note/"
+    - Note Create: POST "/api/note"
     request body {
         title: <title>,
         body: <body>,
@@ -18,4 +20,4 @@ Endpoints (all begin with hostname url):
 
     - Note Delete: DELETE "/api/note/<note_uuid>" 
 
-    - Retrieve list of all notes by a user: GET "/api/<user_id>/notes"
+    - Note List (lsit notes of authenticated request user): GET "/api/note"

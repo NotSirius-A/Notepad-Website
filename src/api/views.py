@@ -1,15 +1,13 @@
-from django.http.request import RawPostDataException
-from django.shortcuts import get_object_or_404
-from rest_framework import request, serializers
-
 from notepad.models import Note, Profile
+
 
 from .authenticators import NoteAuthenticator
 from .serializers import NoteSerializer
 from .permissions import IsNoteOwner
 
-from rest_framework.response import Response
 from rest_framework import viewsets
+
+from rest_framework.authentication import SessionAuthentication
 
 class NoteViewSet(viewsets.ModelViewSet):
     """
@@ -19,7 +17,7 @@ class NoteViewSet(viewsets.ModelViewSet):
     queryset = Note.objects.all()
     serializer_class = NoteSerializer
     lookup_field = 'id'
-    authentication_classes = [NoteAuthenticator]
+    authentication_classes = [SessionAuthentication, NoteAuthenticator]
     permission_classes = [IsNoteOwner]
 
     def perform_create(self, serializer):
@@ -33,3 +31,4 @@ class NoteViewSet(viewsets.ModelViewSet):
             raise Exception("Request user does not have a profile associated with them")
 
         Note.objects.create(**serializer.data, owner=profile)
+
