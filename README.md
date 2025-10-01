@@ -1,10 +1,20 @@
 # Notepad-Webiste
-Website where users can create and share notes
+Website where users can create and share notes between other users.
 
-## Documentation
-Documentation can be found in the docs/ directory
+### Screenshots
 
-## Design
+##### Homepage 
+![homepage](./img/homepage.png)
+
+##### Dashboard
+![dashboard](./img/dashboard.png)
+
+##### Writing notes
+![dashboard](./img/note_creation.png)
+
+More images can be found in the /img folder.
+
+### Design
 #### Core functionalities/choices:
 <ul>
     <li> Fast - least time to create notes </li>
@@ -17,10 +27,9 @@ Documentation can be found in the docs/ directory
 
 #### Things to consider/ideas/for future updates:
 <ul>
-    <li> API to access notes. Not really needed, but i want to learn REST </li>
+    <li> API to access notes</li>
     <li> Note encryption </li>
     <li> HTML tags allowed inside notes </li>
     <li> Auto deleting notes after some time </li>
     <li> Custom user created categories for notes </li>
-    <li> Middleware for traffic logs </li>
 </ul>
