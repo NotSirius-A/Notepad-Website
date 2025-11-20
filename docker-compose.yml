@@ -7,7 +7,7 @@ services:
       dockerfile: ./deployment/nginx/Dockerfile
     volumes:
       - static:/static
-      - ./etc/letsencrypt/live/${DOMAIN_HOST}/:/etc/letsencrypt/live/${DOMAIN_HOST}
+      - /etc/letsencrypt/live/${DOMAIN_HOST}/:/etc/letsencrypt/live/${DOMAIN_HOST}/
     ports:
       - "80:80"
       - "443:443"
