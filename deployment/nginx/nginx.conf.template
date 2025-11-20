@@ -1,0 +1,110 @@
+upstream notepad-djangocorn {
+  ip_hash;
+  server notepad-djangocorn:8000;
+}
+
+
+# limit the number of connections per single IP
+limit_conn_zone $binary_remote_addr zone=conn_limit_per_ip:20m;
+
+# limit the number of requests for a given session
+limit_req_zone $binary_remote_addr zone=req_limit_per_ip:20m rate=150r/s;
+
+
+
+map $sent_http_content_type $expires {
+    default                    off;
+    text/html                  epoch;
+    text/css                   max;
+    application/javascript     max;
+    ~image/                    max;
+    ~font/                     max;
+}
+
+
+
+server {
+    listen 443 ssl http2;
+    server_name ${DOMAIN_HOST};
+
+    ssl_certificate     /etc/letsencrypt/live/${DOMAIN_HOST}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/${DOMAIN_HOST}/privkey.pem;
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers EECDH+CHACHA20:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;
+
+
+    location / {
+        location / {
+            proxy_pass http://notepad-djangocorn/;
+        }
+        location /static/ {
+            autoindex on;
+            alias /static/;
+        }
+    }
+
+    limit_conn conn_limit_per_ip 20;
+    limit_req zone=req_limit_per_ip burst=125 nodelay;
+
+    client_max_body_size 8M;
+
+    expires $expires;
+
+    gzip on;
+    gzip_disable "msie6";
+
+    gzip_vary on;
+    gzip_proxied any;
+    gzip_comp_level 6;
+    gzip_buffers 16 8k;
+    gzip_http_version 1.1;
+    gzip_min_length 256;
+    gzip_types
+      application/atom+xml
+      application/geo+json
+      application/javascript
+      application/x-javascript
+      application/json
+      application/ld+json
+      application/manifest+json
+      application/rdf+xml
+      application/rss+xml
+      application/xhtml+xml
+      application/xml
+      font/eot
+      font/otf
+      font/ttf
+      image/svg+xml
+      text/css
+      text/javascript
+      text/plain
+      text/xml;
+
+
+    # allow the server to close connection on non responding client, this will free up memory
+    reset_timedout_connection on;
+
+    # request timed out -- default 60
+    client_body_timeout 10;
+
+    # if client stop responding, free up memory -- default 60
+    send_timeout 2;
+
+    # server will close connection after this time -- default 75
+    keepalive_timeout 30;
+
+    server_tokens off;
+
+    # if the request body size is more than the buffer size, then the entire (or partial)
+    # request body is written into a temporary file
+    client_body_buffer_size  128k;
+
+    # buffer size for reading client request header -- for testing environment
+    client_header_buffer_size 3m;
+
+    # maximum number and size of buffers for large headers to read from client request
+    large_client_header_buffers 4 256k;
+
+    
+
+}

@@ -7,10 +7,15 @@ services:
       dockerfile: ./deployment/nginx/Dockerfile
     volumes:
       - static:/static
+      - ./etc/letsencrypt/live/${DOMAIN_HOST}/:/etc/letsencrypt/live/${DOMAIN_HOST}
     ports:
       - "80:80"
+      - "443:443"
     depends_on:
       - notepad-djangocorn
+    restart: on-failure:1
+    environment:
+      - DOMAIN_HOST=${DOMAIN_HOST}
 
   notepad-djangocorn:
     build:
@@ -20,9 +25,18 @@ services:
       - "8000"
     volumes:
       - static:/my_app/src/static
-    env_file: ./deployment/django/django_prod.env
     depends_on:
       - notepad-postgresql
+    restart: on-failure:1
+    environment:
+      - DEBUG=${DJANGO_DEBUG}
+      - SECRET_KEY=${DJANGO_SECRET_KEY}
+      - ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
+      - DB_NAME=${POSTGRES_DB_NAME}
+      - DB_USER=${POSTGRES_USER}
+      - DB_PASSWORD=${POSTGRES_PASSWORD}
+      - DB_HOST=${POSTGRES_HOST}
+      - DB_PORT=${POSTGRES_PORT}
 
   notepad-postgresql:
     build:
@@ -32,7 +46,12 @@ services:
       - "5432"
     volumes: 
       - postgres_database:/var/lib/postgresql/data
-    env_file: ./deployment/postgresql/postgresql_prod.env
+    restart: on-failure:1
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB_NAME}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+
 
 volumes:
   static:

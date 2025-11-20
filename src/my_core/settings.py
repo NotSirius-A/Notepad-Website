@@ -16,6 +16,7 @@ import environ
 
 env = environ.Env(
     DEBUG=(bool, False),
+    ALLOWED_HOSTS=(list, []),
     SECRET_KEY=(str, '7d2*#qs-^i(xr%*h5b$=xn*a6-!4i$5-(326i1zwdrjhsetmm$'),
     DB_ENGINE=(str, 'django.db.backends.postgresql'),
     DB_NAME=(str, ''),
@@ -40,7 +41,8 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['*']
+
+ALLOWED_HOSTS = env('ALLOWED_HOSTS')
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
