@@ -17,6 +17,7 @@ import environ
 env = environ.Env(
     DEBUG=(bool, False),
     ALLOWED_HOSTS=(list, []),
+    CSRF_TRUSTED_ORIGINS=(list, []),
     SECRET_KEY=(str, '7d2*#qs-^i(xr%*h5b$=xn*a6-!4i$5-(326i1zwdrjhsetmm$'),
     DB_ENGINE=(str, 'django.db.backends.postgresql'),
     DB_NAME=(str, ''),
@@ -44,6 +45,7 @@ DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = env('ALLOWED_HOSTS')
 
+CSRF_TRUSTED_ORIGINS = env('CSRF_TRUSTED_ORIGINS')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
