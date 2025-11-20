@@ -15,7 +15,7 @@ services:
       - notepad-djangocorn
     restart: on-failure:1
     environment:
-      - NGINX_ENVSUBST_OUTPUT_DIR=/etc/nginx
+      - NGINX_ENVSUBST_OUTPUT_DIR=/etc/nginx/conf.d
       - DOMAIN_HOST=${DOMAIN_HOST}
 
   notepad-djangocorn:
