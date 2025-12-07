@@ -7,7 +7,7 @@ services:
       dockerfile: ./deployment/nginx/Dockerfile
     volumes:
       - static:/static
-      - ./deployment/nginx/ssl/:/ssl/
+      - ../certbot:/etc/letsencrypt
     ports:
       - "80:80"
       - "443:443"
